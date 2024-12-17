@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="PizzaParlor.PointOfSale.OrderSummaryControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PizzaParlor.PointOfSale"
+             mc:Ignorable="d" 
+             d:DesignHeight="620" d:DesignWidth="355">
+    <Grid Background="White">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="12*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" BorderBrush="Black" BorderThickness="2, 0, 0, 2">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <DockPanel HorizontalAlignment="Center">
+                    <TextBlock Text="Order " FontSize="15"/>
+                    <TextBlock Text="{Binding Path=Number}" FontSize="15"/>
+                </DockPanel>
+                <TextBlock Text="{Binding Path=PlacedAt}" FontSize="15"/>
+            </StackPanel>
+        </Border>
+        <TextBlock Text="Click to edit an item" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="2, 0, 0, 0">
+            <ListView x:Name="OrderListView" SelectionChanged="ListView_SelectionChanged" SelectionMode="Single" ItemsSource="{Binding}" FontSize="15" HorizontalContentAlignment="Stretch">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <ListView DockPanel.Dock="Bottom" IsEnabled="False" ItemsSource="{Binding Path=SpecialInstructions}"/>
+                            <TextBlock Text="{Binding Path=Name}" Margin="0,0,5,0" DockPanel.Dock="Left"/>
+                            
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right">
+                                <TextBlock Text="{Binding Path=Price, StringFormat=C}"/>
+                                <Button Click="OnRemoveItemFromOrder" Background="Transparent" BorderBrush="Transparent">&#x1F5D1;</Button>
+                            </StackPanel>
+                            
+                        </DockPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Border>
+
+        <Border Grid.Row="2" BorderBrush="Black" BorderThickness="2, 2, 0, 0">
+            <Border.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="25"/>
+                </Style>
+            </Border.Resources>
+            <StackPanel>
+                <DockPanel>
+                    <TextBlock Text="Subtotal: "/>
+                    <TextBlock Text="{Binding Path=Subtotal, StringFormat=C}" HorizontalAlignment="Right"/>
+                </DockPanel>
+                <DockPanel>
+                    <TextBlock Text="Tax: "/>
+                    <TextBlock Text="{Binding Path=Tax, StringFormat=C}" HorizontalAlignment="Right"/>
+                </DockPanel>
+                <DockPanel>
+                    <TextBlock Text="Total: "/>
+                    <TextBlock Text="{Binding Path=Total, StringFormat=C}" HorizontalAlignment="Right"/>
+                </DockPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+
+</UserControl>

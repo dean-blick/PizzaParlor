@@ -1,0 +1,30 @@
+﻿@page
+@using PizzaParlor.Data
+@model Website.Pages.ReviewsModel
+@{
+	ViewData["Title"] = "Reviews";
+}
+
+<h1>Reviews</h1>
+
+<form method="post">
+
+	<input type="text" name="ReviewText" placeholder="Enter review" value="@Model.ReviewText"/>
+	<input type="submit" value="Add Review"/>
+
+</form>
+
+<div class="grid-container-reverse">
+
+	@foreach (Review r in ReviewList.Reviews)
+	{
+		<div class="review-item">
+			<div>
+				@r.Text
+			</div>
+			<div>
+				@r.DateTime
+			</div>
+		</div>
+	}
+</div>

@@ -1,0 +1,108 @@
+﻿@page
+@model IndexModel
+@using PizzaParlor.Data
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<form class="IndexForm">
+    
+
+    
+    <div>
+        <h4>Calories  </h4>
+        Between
+        <input name="CaloriesMin" type="number" placeholder="min" value="@Model.CaloriesMin"/>
+        and
+        <input name="CaloriesMax" type="number" placeholder="max" value="@Model.CaloriesMax"/>
+    </div>
+
+    
+    <div>
+        <h4>Price  </h4>
+        Between
+        <input name="PriceMin" type="number" placeholder="min" value="@Model.PriceMin"/>
+        and
+        <input name="PriceMax" type="number" placeholder="max" value="@Model.PriceMax"/>
+    </div>
+
+    <div id="search">
+        <input type="text" name="SearchTerms" value="@Model.SearchTerms" />
+        <input type="submit" value="Search">
+    </div>
+</form>
+
+
+<div class="text-center">
+    <h1 class="display-4">Pizza Parlor</h1>
+    <p>Thank you for choosing The Pizza Parlor! We have the best pizza in town.</p>
+    
+    @if (Model.SearchTerms == null && Model.CaloriesMin == null && Model.CaloriesMax == null && Model.PriceMin == null && Model.PriceMax == null)
+    {
+        <h1 id="pizzas">Pizzas</h1>
+        <div class="grid-container">
+            @foreach (IMenuItem item in Menu.Pizzas)
+            {
+                <div class="menu-item">
+                    <p class="item-descriptor">@item.Name</p>
+                    @foreach (string s in item.SpecialInstructions)
+                    {
+                        <p class="item-descriptor">@s</p>
+                    }
+                    <p class="item-descriptor">@item.Price</p>
+                    <p class="item-descriptor">@item.CaloriesPerEach calories per slice</p>
+                </div>
+            }
+        </div>
+
+        <h1 id="sides">Sides</h1>
+        <div class="grid-container">
+            @foreach (IMenuItem item in Menu.Sides)
+            {
+                <div class="menu-item">
+                    <p class="item-descriptor">@item.Name</p>
+                    @foreach (string s in item.SpecialInstructions)
+                    {
+                        <p class="item-descriptor">@s</p>
+                    }
+                    <p class="item-descriptor">$@item.Price</p>
+                    <p class="item-descriptor">@item.CaloriesPerEach calories per side item</p>
+                </div>
+            }
+        </div>
+
+        <h1 id="drinks">Drinks</h1>
+        <div class="grid-container">
+            @foreach (IMenuItem item in Menu.Drinks)
+            {
+                <div class="menu-item">
+                    <p class="item-descriptor">@item.Name</p>
+                    @foreach (string s in item.SpecialInstructions)
+                    {
+                        <p class="item-descriptor">@s</p>
+                    }
+                    <p class="item-descriptor">$@item.Price</p>
+                    <p class="item-descriptor">@item.CaloriesPerEach calories per drink </p>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <h1 id="pizzas">Search Results</h1>
+        <div class="grid-container">
+        @foreach (IMenuItem item in Model.MenuItems)
+        {
+            <div class="menu-item">
+            <p class="item-descriptor">@item.Name</p>
+            @foreach (string s in item.SpecialInstructions)
+            {
+                <p class="item-descriptor">@s</p>
+            }
+            <p class="item-descriptor">@item.Price</p>
+            <p class="item-descriptor">@item.CaloriesPerEach calories per slice</p>
+            </div>
+        }
+        </div>
+    }
+</div>

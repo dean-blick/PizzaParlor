@@ -1,0 +1,61 @@
+﻿<Window x:Class="PizzaParlor.PointOfSale.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PizzaParlor.PointOfSale"
+        mc:Ignorable="d"
+        Title="PizzaParlor" Height="720" Width="1080"
+        x:Name="MainWindowDisplay">
+    <Border BorderBrush="Black" BorderThickness="2">
+        <DockPanel Background="White">
+            <local:OrderSummaryControl x:Name="OrderSummaryDisplay" DockPanel.Dock="Right" Width="230"/>
+            <Grid DockPanel.Dock="Bottom" MinHeight="80">
+                <Grid.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="FontSize" Value="25"/>
+                        <Setter Property="Margin" Value="10"/>
+                        <Setter Property="BorderThickness" Value="2"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="Background" Value="White"/>
+                        <Style.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="30"/>
+                            </Style>
+                        </Style.Resources>
+                    </Style>
+                </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="CancelOrderButton" Click="OnCancelOrderButtonClick" Grid.Row="7" Grid.Column="0">
+                    Cancel Order
+                </Button>
+                <Button Click="BackToMenu" Grid.Row="7" Grid.Column="1">
+                    Back to menu
+                </Button>
+                <Button x:Name="CompleteOrderButton" Click="OnCompleteOrderButtonClick" Grid.Row="7" Grid.Column="2">
+                    Complete Order
+                </Button>
+            </Grid>
+            <Grid>
+                <local:MenuItemSelectionControl x:Name="MenuItemSelectionDisplay" Visibility="Visible"/>
+                <local:PaymentControl x:Name="PaymentDisplay" Visibility="Hidden"/>
+                <local:BreadsticksControl x:Name="BreadsticksDisplay" Visibility="Hidden"/>
+                <local:CinnamonsticksControl x:Name="CinnamonsticksDisplay" Visibility="Hidden"/>
+                <local:GarlicKnotsControl x:Name="GarlicKnotsDisplay" Visibility="Hidden"/>
+                <local:WingsControl x:Name="WingsDisplay" Visibility="Hidden"/>
+                <local:PizzaControl x:Name="PizzaDisplay" Visibility="Hidden"/>
+                <local:HawaiianPizzaControl x:Name="HawaiianPizzaDisplay" Visibility="Hidden"/>
+                <local:MeatsPizzaControl x:Name="MeatsPizzaDisplay" Visibility="Hidden"/>
+                <local:SupremePizzaControl x:Name="SupremePizzaDisplay" Visibility="Hidden"/>
+                <local:VeggiePizzaControl x:Name="VeggiePizzaDisplay" Visibility="Hidden"/>
+                <local:SodaControl x:Name="SodaDisplay" Visibility="Hidden"/>
+                <local:IcedTeaControl x:Name="IcedTeaDisplay" Visibility="Hidden"/>
+            </Grid>
+        </DockPanel>
+    </Border>
+    
+</Window>

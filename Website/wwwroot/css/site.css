@@ -1,0 +1,60 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.IndexForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.IndexForm input[type=number] {
+    width: 5rem;
+}
+
+.menu-item {
+    border-style: solid;
+    border-color: red;
+    border-width: 2px;
+    margin: 1rem;
+    border-radius: 10px;
+}
+
+.item-descriptor {
+    margin: .5rem;
+}
+
+.grid-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min-content, 200px));
+}
+
+.grid-container-reverse {
+    width: 100%;
+    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 4px;
+}
+
+.review-item {
+    border: 1px solid black;
+    padding: 2px;
+    border-radius: 10px;
+}
